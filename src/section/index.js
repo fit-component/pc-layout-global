@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.scss'
 
 export default class Section extends React.Component {
     constructor(props) {
@@ -33,13 +34,13 @@ export default class Section extends React.Component {
             position: 'absolute',
             top: this.props.top || this.state.top,
             bottom: this.props.bottom || this.state.bottom,
-            overflow: 'auto',
             left: this.props.left || this.state.left,
             right: this.props.right || this.state.right || 0
         }
 
         return (
-            <div style={style}>
+            <div className="_namespace"
+                 style={style}>
                 {this.props.children}
             </div>
         )

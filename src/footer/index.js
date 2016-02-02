@@ -16,7 +16,7 @@ export default class Footer extends React.Component {
             position: 'absolute',
             left: this.props.left || 0,
             bottom: this.props.bottom || 0,
-            height: this.props.height || this.props.footerHeight || 100,
+            height: this.props.height || this.props.footerHeight,
             width: this.props.width || this.props.footerWidth || '100%'
         }
 
@@ -26,4 +26,9 @@ export default class Footer extends React.Component {
             </div>
         )
     }
+}
+
+Footer.defaultProps = {
+    // @desc 高度
+    height: 100
 }

@@ -23,8 +23,8 @@ export default class Sidebar extends React.Component {
     }
 
     componentDidMount() {
-        this.props.store.dispatch(setSiderBarWidth(this.props.width || this.props.siderbarWidth || 100))
-        this.props.store.dispatch(setSiderbarDirection(this.props.direction || this.props.sectionDirection || 'left'))
+        this.props.store.dispatch(setSiderBarWidth(this.props.width || this.props.siderbarWidth))
+        this.props.store.dispatch(setSiderbarDirection(this.props.direction || this.props.sectionDirection))
     }
 
     render() {
@@ -39,7 +39,7 @@ export default class Sidebar extends React.Component {
             top: this.props.top || this.state.top,
             bottom: this.props.bottom || this.state.bottom,
             overflow: 'auto',
-            width: this.props.width || this.props.siderbarWidth || 100
+            width: this.props.width || this.props.siderbarWidth
         }
 
         return (
@@ -48,4 +48,13 @@ export default class Sidebar extends React.Component {
             </div>
         )
     }
+}
+
+Sidebar.defaultProps = {
+    // @desc 宽度
+    width: 100,
+
+    // @desc 方向,左边或者右边
+    // @enum left right
+    direction: 'left'
 }

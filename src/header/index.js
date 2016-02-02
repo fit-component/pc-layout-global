@@ -7,7 +7,7 @@ export default class Header extends React.Component {
         this.state = {}
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.store.dispatch(setHeaderHeight(this.props.height || this.props.headerHeight || 0))
     }
 
@@ -17,13 +17,19 @@ export default class Header extends React.Component {
             top: 0,
             left: 0,
             width: this.props.width || this.props.headerWidth || '100%',
-            height: this.props.height || this.props.headerHeight || 0
+            height: this.props.height || this.props.headerHeight
         }
 
         return (
-            <div style={style}>
+            <div className="_namespace"
+                 style={style}>
                 {this.props.children}
             </div>
         )
     }
+}
+
+Header.defaultProps = {
+    // @desc 高度
+    height: 100
 }

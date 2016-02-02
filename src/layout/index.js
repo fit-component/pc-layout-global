@@ -1,7 +1,6 @@
 import React from 'react'
 import { createStore } from 'redux'
 import LayoutApp from '../reducers'
-
 import './index.scss'
 
 export default class Layout extends React.Component {
@@ -12,7 +11,7 @@ export default class Layout extends React.Component {
 
     render() {
         let store = createStore(LayoutApp)
-
+        
         let childs = React.Children.map(this.props.children, (children, index)=> {
             return React.cloneElement(children, {
                 key: index,
