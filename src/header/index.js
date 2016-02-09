@@ -17,7 +17,8 @@ export default class Header extends React.Component {
             top: 0,
             left: 0,
             width: this.props.width || this.props.headerWidth || '100%',
-            height: this.props.height || this.props.headerHeight
+            height: this.props.height || this.props.headerHeight,
+            zIndex: 3
         }
 
         return (
