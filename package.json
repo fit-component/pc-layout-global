@@ -14,6 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "react": "^0.14.7",
-    "fit-style": "^0.0.1"
+    "fit-style": "^1.1.46"
   }
 }
