@@ -13,6 +13,7 @@
   "author": "tieba",
   "license": "ISC",
   "dependencies": {
-    "react": "^0.14.7"
+    "react": "^0.14.7",
+    "fit-style": "^0.0.1"
   }
 }
