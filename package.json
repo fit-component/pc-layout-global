@@ -1,6 +1,6 @@
 {
   "name": "fit-layout-global",
-  "version": "0.2.59",
+  "version": "0.2.60",
   "description": "全局布局",
   "main": "lib/index.js",
   "scripts": {
