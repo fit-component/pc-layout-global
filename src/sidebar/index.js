@@ -7,7 +7,8 @@ export default class Sidebar extends React.Component {
         this.state = {
             direction: this.props.direction || this.props.sectionDirection || 'left',
             top: this.props.top || this.props.headerHeight || 0,
-            bottom: this.props.bottom || this.props.footerHeight || 0
+            bottom: this.props.bottom || this.props.footerHeight || 0,
+            footerNewLine: true
         }
     }
 
@@ -17,7 +18,8 @@ export default class Sidebar extends React.Component {
 
             this.setState({
                 top: layout.headerHeight || 0,
-                bottom: layout.footerHeight || 0
+                bottom: layout.footerHeight || 0,
+                footerNewLine: layout.footerNewLine
             })
         })
     }
@@ -37,7 +39,7 @@ export default class Sidebar extends React.Component {
             this.props.right || 0 :
             this.props.right || 'auto',
             top: this.props.top || this.state.top,
-            bottom: this.props.bottom || this.state.bottom,
+            bottom: this.state.footerNewLine ? (this.props.bottom || this.state.bottom) : 0,
             overflow: 'auto',
             width: this.props.width || this.props.siderbarWidth
         }

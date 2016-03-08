@@ -14,7 +14,7 @@ export default class Section extends React.Component {
     }
 
     componentWillMount() {
-        this.props.store.subscribe(() => {
+        this.unsubscribe = this.props.store.subscribe(() => {
             let layout = this.props.store.getState().Layout
 
             this.setState({
@@ -27,6 +27,10 @@ export default class Section extends React.Component {
                 direction: layout.siderbarDirection
             })
         })
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe()
     }
 
     render() {
