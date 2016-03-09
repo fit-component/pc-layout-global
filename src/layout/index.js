@@ -10,7 +10,7 @@ export default class Layout extends React.Component {
         this.state = {}
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // 设置全局样式
         $('html,body').css({
             width: '100%',
