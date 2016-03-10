@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import { setFooterHeight, setFooterNewLine } from '../actions'
 
 export default class Footer extends React.Component {
@@ -31,15 +32,21 @@ export default class Footer extends React.Component {
     }
 
     render() {
+        const {className, bottom, height, left, newLine, footerHeight, children, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
         let style = {
             position: 'absolute',
-            bottom: this.props.bottom || 0,
-            height: this.props.height || this.props.footerHeight,
-            left: this.props.left || 0,
+            bottom: bottom || 0,
+            height: height || footerHeight,
+            left: left || 0,
             right: 0
         }
 
-        if (!this.props.newLine) {
+        if (!newLine) {
             switch (this.state.siderbarDirection) {
             case 'right':
                 style.left = 0
@@ -52,9 +59,11 @@ export default class Footer extends React.Component {
             }
         }
 
+        others.style = Object.assign({}, style, others.style)
+
         return (
-            <div style={style}>
-                {this.props.children}
+            <div {...others} className={classes}>
+                {children}
             </div>
         )
     }

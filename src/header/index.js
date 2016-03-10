@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import { setHeaderHeight } from '../actions'
 
 export default class Header extends React.Component {
@@ -12,19 +13,26 @@ export default class Header extends React.Component {
     }
 
     render() {
+        const {className, width, headerWidth, height, headerHeight, children, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
         let style = {
             position: 'absolute',
             top: 0,
             left: 0,
-            width: this.props.width || this.props.headerWidth || '100%',
-            height: this.props.height || this.props.headerHeight,
+            width: width || headerWidth || '100%',
+            height: height || headerHeight,
             zIndex: 3
         }
 
+        others.style = Object.assign({}, style, others.style)
+
         return (
-            <div className="_namespace"
-                 style={style}>
-                {this.props.children}
+            <div {...others} className={classes}>
+                {children}
             </div>
         )
     }

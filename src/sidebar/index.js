@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import { setSiderBarWidth, setSiderbarDirection } from '../actions'
 
 export default class Sidebar extends React.Component {
@@ -30,23 +31,27 @@ export default class Sidebar extends React.Component {
     }
 
     render() {
+        const {className, top, bottom, left, right, width, siderbarWidth, children, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
         let style = {
             position: 'absolute',
-            left: this.state.direction === 'left' ?
-            this.props.left || 0 :
-            this.props.left || 'auto',
-            right: this.state.direction === 'right' ?
-            this.props.right || 0 :
-            this.props.right || 'auto',
-            top: this.props.top || this.state.top,
-            bottom: this.state.footerNewLine ? (this.props.bottom || this.state.bottom) : 0,
+            left: this.state.direction === 'left' ? left || 0 : left || 'auto',
+            right: this.state.direction === 'right' ? right || 0 : right || 'auto',
+            top: top || this.state.top,
+            bottom: this.state.footerNewLine ? (bottom || this.state.bottom) : 0,
             overflow: 'auto',
-            width: this.props.width || this.props.siderbarWidth
+            width: width
         }
 
+        others.style = Object.assign({}, style, others.style)
+
         return (
-            <div style={style}>
-                {this.props.children}
+            <div {...others} className={classes}>
+                {children}
             </div>
         )
     }

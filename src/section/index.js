@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import './index.scss'
 
 export default class Section extends React.Component {
@@ -34,18 +35,25 @@ export default class Section extends React.Component {
     }
 
     render() {
+        const {className, top, bottom, left, right, children, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
         let style = {
             position: 'absolute',
-            top: this.props.top || this.state.top,
-            bottom: this.props.bottom || this.state.bottom,
-            left: this.props.left || this.state.left,
-            right: this.props.right || this.state.right || 0
+            top: top || this.state.top,
+            bottom: bottom || this.state.bottom,
+            left: left || this.state.left,
+            right: right || this.state.right || 0
         }
 
+        others.style = Object.assign({}, style, others.style)
+
         return (
-            <div className="_namespace"
-                 style={style}>
-                {this.props.children}
+            <div {...others} className={classes}>
+                {children}
             </div>
         )
     }

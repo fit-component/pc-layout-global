@@ -2,6 +2,7 @@ import React from 'react'
 import { createStore } from 'redux'
 import LayoutApp from '../reducers'
 import $ from 'jquery'
+import classNames from 'classnames'
 import './index.scss'
 
 export default class Layout extends React.Component {
@@ -29,24 +30,23 @@ export default class Layout extends React.Component {
     }
 
     render() {
+        const {className, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
         let store = createStore(LayoutApp)
 
         let childs = React.Children.map(this.props.children, (children, index)=> {
             return React.cloneElement(children, {
                 key: index,
-                headerHeight: this.props.headerHeight,
-                headerWidth: this.props.headerWidth,
-                siderbarWidth: this.props.siderbarWidth,
-                siderbarHeight: this.props.siderbarHeight,
-                footerHeight: this.props.footerHeight,
-                footerWidth: this.props.footerWidth,
-                sectionDirection: this.props.sectionDirection,
                 store: store
             })
         })
 
         return (
-            <div className="_namespace" {...this.props}>
+            <div {...others} className={classes}>
                 {childs}
             </div>
         )
