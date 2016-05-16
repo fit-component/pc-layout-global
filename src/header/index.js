@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { setHeaderHeight } from '../actions'
+import './index.scss'
 
 export default class Header extends React.Component {
     constructor(props) {

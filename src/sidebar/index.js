@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { setSiderBarWidth, setSiderbarDirection } from '../actions'
+import './index.scss'
 
 export default class Sidebar extends React.Component {
     constructor(props) {

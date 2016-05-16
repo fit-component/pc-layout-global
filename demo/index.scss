@@ -1,16 +1,17 @@
 ._global {
-  .src-components-pc-layout_global {
-    .example-container > div {
-      height: 400px;
-      position: relative;
-      & > div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: rgba(24, 115, 216, 0.7);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        color: #fff;
-      }
+    .src-components-pc-layout_global {
+        .example-container-box > div {
+            height: 400px;
+            position: relative;
+            & > div {
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(24, 115, 216, 0.7);
+                border: 1px solid rgba(0, 0, 0, 0.125);
+                color: #fff;
+            }
+        }
     }
-  }
 }

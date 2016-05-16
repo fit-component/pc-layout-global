@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { setFooterHeight, setFooterNewLine } from '../actions'
+import './index.scss'
 
 export default class Footer extends React.Component {
     constructor(props) {
