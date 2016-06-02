@@ -1,3 +1,5 @@
+/// <reference path="../../../../typings/tsd.d.ts" />
+
 import Layout from './layout'
 import Header from './header'
 import Sidebar from './sidebar'

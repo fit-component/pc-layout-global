@@ -1,12 +1,17 @@
-import React from 'react'
-import { createStore } from 'redux'
+import * as React from 'react'
+import {createStore} from 'redux'
 import LayoutApp from '../reducers'
-import $ from 'jquery'
-import classNames from 'classnames'
+import * as module from './module'
+import {others} from '../../../../common/transmit-transparently/src'
+import * as $ from 'jquery'
+import * as classNames from 'classnames'
 import './index.scss'
 
-export default class Layout extends React.Component {
-    constructor(props) {
+export default class Layout extends React.Component<module.PropsInterface, module.StateInterface> {
+    static defaultProps: module.PropsInterface = new module.Props()
+    public state: module.StateInterface = new module.State()
+
+    constructor(props: any) {
         super(props)
         this.state = {}
     }
@@ -30,15 +35,14 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {className, ...others} = this.props
         const classes = classNames({
             '_namespace': true,
-            [className]: className
+            [this.props['className']]: !!this.props['className']
         })
 
         let store = createStore(LayoutApp)
 
-        let childs = React.Children.map(this.props.children, (children, index)=> {
+        let childs = React.Children.map(this.props.children, (children: any, index: number) => {
             return React.cloneElement(children, {
                 key: index,
                 store: store
@@ -46,7 +50,8 @@ export default class Layout extends React.Component {
         })
 
         return (
-            <div {...others} className={classes}>
+            <div {...others(new module.Props(), this.props) }
+                className={classes}>
                 {childs}
             </div>
         )

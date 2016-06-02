@@ -1,7 +1,7 @@
-import React from 'react'
-import { Layout, Header , Sidebar, Section, Footer } from 'fit-layout-global'
+import * as React from 'react'
+import { Layout, Header , Sidebar, Section, Footer } from '../../src'
 
-export default class Demo extends React.Component {
+export default class Demo extends React.Component <any, any> {
     render() {
         return (
             <Layout>
