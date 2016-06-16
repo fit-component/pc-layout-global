@@ -22,6 +22,7 @@ export default class Header extends React.Component<module.PropsInterface, modul
         const {width, headerWidth, height, headerHeight, children} = this.props
         const classes = classNames({
             '_namespace': true,
+            'header': true,
             [this.props['className']]: !!this.props['className']
         })
 
@@ -30,8 +31,7 @@ export default class Header extends React.Component<module.PropsInterface, modul
             top: 0,
             left: 0,
             width: width || headerWidth || '100%',
-            height: height || headerHeight,
-            zIndex: 3
+            height: height || headerHeight
         }
 
         let _others: any = others(new module.Props(), this.props)
