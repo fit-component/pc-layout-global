@@ -17,8 +17,8 @@ export default class Sidebar extends React.Component<module.PropsInterface, modu
     }
 
     componentWillMount() {
-        this.props['store'].subscribe(() => {
-            let layout = this.props['store'].getState().Layout
+        this.props.store.subscribe(() => {
+            let layout = this.props.store.getState().Layout
 
             this.setState({
                 top: layout.headerHeight || 0,
@@ -29,8 +29,8 @@ export default class Sidebar extends React.Component<module.PropsInterface, modu
     }
 
     componentDidMount() {
-        this.props['store'].dispatch(setSiderBarWidth(this.props.width))
-        this.props['store'].dispatch(setSiderbarDirection(this.props.direction))
+        this.props.store.dispatch(setSiderBarWidth(this.props.width))
+        this.props.store.dispatch(setSiderbarDirection(this.props.direction))
     }
 
     render() {
@@ -52,6 +52,7 @@ export default class Sidebar extends React.Component<module.PropsInterface, modu
 
         let _others: any = others(new module.Props(), this.props)
         _others.style = Object.assign(_others.style || {}, style)
+        delete _others.store
 
         return (
             <div {..._others}

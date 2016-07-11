@@ -6,6 +6,8 @@ export interface PropsInterface {
      */
     direction?: string
 
+    store?: any
+
     [x: string]: any
 }
 

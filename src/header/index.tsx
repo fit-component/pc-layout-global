@@ -15,7 +15,7 @@ export default class Header extends React.Component<module.PropsInterface, modul
     }
 
     componentDidMount() {
-        this.props['store'].dispatch(setHeaderHeight(this.props.height))
+        this.props.store.dispatch(setHeaderHeight(this.props.height))
     }
 
     render() {
@@ -36,6 +36,7 @@ export default class Header extends React.Component<module.PropsInterface, modul
 
         let _others: any = others(new module.Props(), this.props)
         _others.style = Object.assign(_others.style || {}, style)
+        delete _others.store
 
         return (
             <div {..._others}

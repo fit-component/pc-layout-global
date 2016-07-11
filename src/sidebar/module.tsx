@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Store } from 'redux'
 
 export interface PropsInterface {
     /**
@@ -10,6 +11,8 @@ export interface PropsInterface {
      * 方向
      */
     direction?: string
+
+    store?: Store
 
     [x: string]: any
 }

@@ -49,6 +49,7 @@ export default class Section extends React.Component<module.PropsInterface, modu
 
         let _others: any = others(new module.Props(), this.props)
         _others.style = Object.assign(_others.style || {}, style)
+        delete _others.store;
 
         return (
             <div {..._others}
