@@ -1,6 +1,7 @@
-import React from 'react'
-import { shallow, mount } from 'enzyme'
-import { Layout, Header , Sidebar, Section, Footer } from 'fit-layout-global'
+import * as React from 'react'
+import {shallow, mount} from 'enzyme'
+import {Layout, Header, Sidebar, Section, Footer} from '../src'
+import * as chai from 'chai'
 
 describe('fit-layout-global', ()=> {
     it('样式没想好怎么测~', ()=> {
@@ -10,7 +11,7 @@ describe('fit-layout-global', ()=> {
                 <Section>主体</Section>
             </Layout>
         )
-        expect(true).to.equal(true)
+        chai.expect(true).to.equal(true)
     })
 
     it('unmount', ()=> {
@@ -21,6 +22,6 @@ describe('fit-layout-global', ()=> {
             </Layout>
         )
         node.unmount()
-        expect(true).to.equal(true)
+        chai.expect(true).to.equal(true)
     })
 })
