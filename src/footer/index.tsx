@@ -2,13 +2,11 @@ import * as React from 'react'
 import * as classNames from 'classnames'
 import * as module from './module'
 import {others} from '../../../../common/transmit-transparently/src'
-import {setFooterHeight, setFooterNewLine} from '../actions'
 import './index.scss'
 
 export default class Footer extends React.Component<module.PropsInterface, module.StateInterface> {
     static defaultProps: module.PropsInterface = new module.Props()
     public state: module.StateInterface = new module.State()
-    private unsubscribe: any
 
     constructor(props: any) {
         super(props)
@@ -19,23 +17,8 @@ export default class Footer extends React.Component<module.PropsInterface, modul
     }
 
     componentWillMount() {
-        this.unsubscribe = this.props['store'].subscribe(() => {
-            let layout = this.props['store'].getState().Layout
-
-            this.setState({
-                sidebarWidth: layout.siderbarWidth,
-                siderbarDirection: layout.siderbarDirection
-            })
-        })
-        this.props['store'].dispatch(setFooterNewLine(this.props.newLine))
-    }
-
-    componentDidMount() {
-        this.props['store'].dispatch(setFooterHeight(this.props.height))
-    }
-
-    componentWillUnmount() {
-        this.unsubscribe()
+        this.props.store.setFooterNewLine(this.props.newLine)
+        this.props.store.setFooterHeight(this.props.height)
     }
 
     render() {
@@ -54,13 +37,13 @@ export default class Footer extends React.Component<module.PropsInterface, modul
         }
 
         if (!newLine) {
-            switch (this.state.siderbarDirection) {
+            switch (this.props.store.siderbarDirection) {
                 case 'right':
                     style.left = 0
-                    style.right = this.state.sidebarWidth
+                    style.right = this.props.store.siderbarWidth
                     break
                 case 'left':
-                    style.left = this.state.sidebarWidth
+                    style.left = this.props.store.siderbarWidth
                     style.right = 0
                     break
             }

@@ -1,10 +1,11 @@
 import * as React from 'react'
 import * as classNames from 'classnames'
-import {setSiderBarWidth, setSiderbarDirection} from '../actions'
 import * as module from './module'
 import {others} from '../../../../common/transmit-transparently/src'
+import {observer} from 'mobx-react'
 import './index.scss'
 
+@observer
 export default class Sidebar extends React.Component<module.PropsInterface, module.StateInterface> {
     static defaultProps: module.PropsInterface = new module.Props()
     public state: module.StateInterface = new module.State()
@@ -17,20 +18,14 @@ export default class Sidebar extends React.Component<module.PropsInterface, modu
     }
 
     componentWillMount() {
-        this.props.store.subscribe(() => {
-            let layout = this.props.store.getState().Layout
-
-            this.setState({
-                top: layout.headerHeight || 0,
-                bottom: layout.footerHeight || 0,
-                footerNewLine: layout.footerNewLine
-            })
-        })
+        this.props.store.setSidebarWidth(this.props.width)
+        this.props.store.setSiderbarDirection(this.props.direction)
     }
 
-    componentDidMount() {
-        this.props.store.dispatch(setSiderBarWidth(this.props.width))
-        this.props.store.dispatch(setSiderbarDirection(this.props.direction))
+    componentWillReceiveProps(nextProps: module.PropsInterface) {
+        // 通知修改宽度
+        this.props.store.setSidebarWidth(nextProps.width)
+        this.props.store.setSiderbarDirection(nextProps.direction)
     }
 
     render() {
@@ -44,8 +39,8 @@ export default class Sidebar extends React.Component<module.PropsInterface, modu
             position: 'absolute',
             left: this.state.direction === 'left' ? left || 0 : left || 'auto',
             right: this.state.direction === 'right' ? right || 0 : right || 'auto',
-            top: top || this.state.top,
-            bottom: this.state.footerNewLine ? (bottom || this.state.bottom) : 0,
+            top: top || this.props.store.headerHeight,
+            bottom: this.props.store.footerNewLine ? (bottom || this.props.store.footerHeight) : 0,
             overflow: 'auto',
             width: width
         }

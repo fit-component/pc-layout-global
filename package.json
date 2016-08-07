@@ -1,6 +1,6 @@
 {
   "name": "fit-layout-global",
-  "version": "3.0.22",
+  "version": "3.0.23",
   "description": "全局布局",
   "main": "lib/index.js",
   "scripts": {
@@ -17,7 +17,9 @@
     "classnames": "^2.2.3",
     "fit-transmit-transparently": "^3.1.26",
     "redux": "^3.4.0",
-    "jquery": "^1.12.4"
+    "jquery": "^1.12.4",
+    "mobx-react": "^3.5.4",
+    "mobx": "^2.4.2"
   },
   "typings": "lib/index.d.ts"
 }

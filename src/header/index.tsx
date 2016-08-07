@@ -2,7 +2,6 @@ import * as React from 'react'
 import * as classNames from 'classnames'
 import * as module from './module'
 import {others} from '../../../../common/transmit-transparently/src'
-import {setHeaderHeight} from '../actions'
 import './index.scss'
 
 export default class Header extends React.Component<module.PropsInterface, module.StateInterface> {
@@ -14,8 +13,8 @@ export default class Header extends React.Component<module.PropsInterface, modul
         this.state = {}
     }
 
-    componentDidMount() {
-        this.props.store.dispatch(setHeaderHeight(this.props.height))
+    componentWillMount() {
+        this.props.store.setHeaderHeight(this.props.height)
     }
 
     render() {

@@ -1,15 +1,16 @@
 import * as React from 'react'
 import {createStore} from 'redux'
-import LayoutApp from '../reducers'
 import * as module from './module'
 import {others} from '../../../../common/transmit-transparently/src'
 import * as $ from 'jquery'
 import * as classNames from 'classnames'
+import Store from '../store'
 import './index.scss'
 
 export default class Layout extends React.Component<module.PropsInterface, module.StateInterface> {
     static defaultProps: module.PropsInterface = new module.Props()
     public state: module.StateInterface = new module.State()
+    private store = new Store()
 
     constructor(props: any) {
         super(props)
@@ -23,6 +24,8 @@ export default class Layout extends React.Component<module.PropsInterface, modul
             height: '100%',
             overflow: 'hidden'
         })
+        // 所有子组件都收集完数据了,强制更新
+        this.forceUpdate()
     }
 
     componentWillUnmount() {
@@ -40,12 +43,10 @@ export default class Layout extends React.Component<module.PropsInterface, modul
             [this.props['className']]: !!this.props['className']
         })
 
-        let store = createStore(LayoutApp)
-
         let childs = React.Children.map(this.props.children, (children: any, index: number) => {
             return React.cloneElement(children, {
                 key: index,
-                store: store
+                store: this.store
             })
         })
 

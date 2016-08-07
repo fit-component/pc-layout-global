@@ -7,29 +7,9 @@ import './index.scss'
 export default class Section extends React.Component<module.PropsInterface, module.StateInterface> {
     static defaultProps: module.PropsInterface = new module.Props()
     public state: module.StateInterface = new module.State()
-    private unsubscribe: any
 
-    constructor(props: any) {
+    constructor(props: module.PropsInterface) {
         super(props)
-    }
-
-    componentWillMount() {
-        this.unsubscribe = this.props['store'].subscribe(() => {
-            let layout = this.props['store'].getState().Layout
-
-            this.setState({
-                top: layout.headerHeight || 0,
-                bottom: layout.footerHeight || 0,
-                left: layout.siderbarDirection === 'left' ? layout.siderbarWidth :
-                    0,
-                right: layout.siderbarDirection === 'left' ? 0 :
-                    layout.siderbarWidth
-            })
-        })
-    }
-
-    componentWillUnmount() {
-        this.unsubscribe()
     }
 
     render() {
@@ -41,10 +21,11 @@ export default class Section extends React.Component<module.PropsInterface, modu
 
         let style = {
             position: 'absolute',
-            top: top || this.state.top,
-            bottom: bottom || this.state.bottom,
-            left: left || this.state.left,
-            right: right || this.state.right || 0
+            top: top || this.props.store.headerHeight,
+            bottom: bottom || this.props.store.footerHeight,
+            left: left || (this.props.store.siderbarDirection === 'left' ? this.props.store.siderbarWidth : 0),
+            right: right || (this.props.store.siderbarDirection === 'left' ? 0 :
+                this.props.store.siderbarWidth) || 0
         }
 
         let _others: any = others(new module.Props(), this.props)

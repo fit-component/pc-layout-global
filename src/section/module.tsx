@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Store from '../store'
 
 export interface PropsInterface {
     /**
@@ -6,7 +7,7 @@ export interface PropsInterface {
      */
     direction?: string
 
-    store?: any
+    store?: Store
 
     [x: string]: any
 }

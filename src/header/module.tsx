@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Store } from 'redux'
+import Store from '../store'
 
 export interface PropsInterface {
     /**

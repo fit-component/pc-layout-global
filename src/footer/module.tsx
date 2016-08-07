@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Store from '../store'
 
 export interface PropsInterface {
     /**
@@ -10,6 +11,8 @@ export interface PropsInterface {
      * 有侧边栏时,是否另起一行
      */
     newLine?: boolean
+
+    store?: Store
 
     [x: string]: any
 }
