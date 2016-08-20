@@ -1,5 +1,4 @@
 import * as React from 'react'
-import {createStore} from 'redux'
 import * as module from './module'
 import {others} from '../../../../common/transmit-transparently/src'
 import * as $ from 'jquery'
